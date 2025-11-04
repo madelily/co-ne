@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  
+  <title>10/06 layout</title>
+
+  <style>
+    h1 {
+
+    }
+    h2 {
+      border-top: 3px dotted #935e5e;
+      padding-top: 15px;
+      padding-left: 20px;
+    }
+    h3{
+      color:#935e5e;
+    }
+
+    p {
+
+    }
+    span {
+      font-size: 1rem;
+      color:rgb(149, 106, 51);
+      font-weight: 300;
+    }
+    .container {
+      width: 700px;
+      height: 130px;
+      background-color: #eee;
+      border:1px solid #222;
+      margin-bottom:30px;
+      display: flex;
+    }
+
+    .container2 {
+      width: 300px;
+      height: 300px;
+      background-color: #eee;
+      border:1px solid #222;
+      margin-bottom:30px;
+      display: flex;
+      flex-flow: row wrap;
+    }
+
+    .container3 {
+      width: 450px;
+      height: 300px;
+      background-color: #eee;
+      border:1px solid #222;
+      margin-bottom:30px;
+      display: flex;
+      flex-flow: row wrap;
+      gap: 15px;
+    }
+
+    .container4 {
+      width: 450px;
+      height: 300px;
+      background-color: #eee;
+      border:1px solid #222;
+      margin-bottom:30px;
+      display: flex;
+      flex-flow: row wrap;
+      gap: 15px;
+      padding:30px;
+    }
+
+    .inbox {
+      width: 150px;
+      height: 50px;
+      border: 1px solid #000000;
+      /* text-align:center; 텍스트는 가운데 정렬하지만 상하 좌우가 안됨. 아래 3줄을 입력하면 텍스트가 가운데 정렬이 됨.*/
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      }
+
+    .box {
+      width: 100px;
+      height: 50px;
+      border: 1px solid #000000;
+      /* text-align:center; 텍스트는 가운데 정렬하지만 상하 좌우가 안됨. 아래 3줄을 입력하면 텍스트가 가운데 정렬이 됨.*/
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      }
+
+       .box2 {
+      width: 100px;
+      border: 1px solid #000000;
+      /* text-align:center; 텍스트는 가운데 정렬하지만 상하 좌우가 안됨. 아래 3줄을 입력하면 텍스트가 가운데 정렬이 됨.*/
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      }
+
+    #opt1 { flex-direction:row ;}
+    #opt2 { flex-direction:row-reverse;}
+    #opt3 { flex-direction:column ;}
+    #opt4 { flex-direction:column-reverse ;}
+
+    #inbox1 {background-color: aqua;}
+    #inbox2 {background-color:#935e5e;}
+    #inbox3 {background-color:blueviolet;}
+    #inbox4 {background-color: rgb(0, 255, 4);}
+    #inbox5 {background-color: rgb(255, 0, 204);}
+    #inbox6 {background-color: rgb(255, 179, 0);}
+
+    #flexwrap1 {flex-wrap:nowrap}
+    #flexwrap2 {flex-wrap:wrap}
+    #flexwrap3 {flex-wrap:wrap-reverse}
+
+    #flexflow1 {flex-flow:row wrap}
+    #flexflow2 {flex-flow:row nowrap}
+
+    #justiflycontent1 { justify-content:flex-start;}
+    #justiflycontent2 { justify-content:flex-end;}
+    #justiflycontent3 { justify-content:center;}
+    #justiflycontent4 { justify-content:space-around;}
+    #justiflycontent5 { justify-content:space-between;}
+    #justiflycontent6 { justify-content:space-evenly;}
+
+    #inbox-margin__right {margin-right: auto; background-color: aqua;}
+    #inbox-margin__left {margin-left: auto; background-color: rgb(0, 255, 4);}
+
+    #alignitem1 {align-items: flex-start;}
+    #alignitem2 {align-items: flex-end;}
+    #alignitem3 {align-items: center;}
+    #alignitem4 {align-items: baseline;}
+    #alignitem5 {align-items: stretch;}
+
+    #inbox01 {align-self:auto;background-color: aqua;} /* 자동. 부모요소 따르기 인듯 */
+    #inbox02 {align-self:normal;background-color:#935e5e;} /* 기본값 가득채움 */
+    #inbox03 {align-self:flex-start;background-color:blueviolet;}  /* 시작점(상단) */
+    #inbox04 {align-self:flex-end;background-color: rgb(0, 255, 4);}  /* 끝점(하단)) */
+    #inbox05 {align-self:self-start;background-color: aqua;}  /* 넌 뭐야? */
+    #inbox06 {align-self:self-end;background-color:#f263ff;} /* 넌 뭐야?  */
+    #inbox07 {align-self:baseline;background-color:rgb(98, 161, 255);} /* 글자 라인에 맞춰 */
+    #inbox08 {align-self:center;background-color: rgb(242, 255, 0);} /* 가운데 정렬 */
+    #inbox09 {align-self:stretch;background-color: rgb(255, 0, 183);} /* 가득채움 */
+
+    #inbox001 {align-content: flex-start;}
+    #inbox002 {align-content: flex-end;}
+    #inbox003 {align-content: center;}
+    #inbox004 {align-content: space-between;}
+    #inbox005 {align-content: space-around;}
+    #inbox006 {align-content: stretch;}
+  </style>
+</head>
+<body>
+<h1>Flex box</h1>
+<p>플랙스 박스에 대해서 그림으로 이해해요.</p>
+<p>플래스 박스는 새로 등장한 개념으로 저도 공부를 하며 이해해야 하는 시간이 필요했습니다. 더욱 세분화되어 박스 정렬이 가능해 진 것이 특징입니다. 공부와 함께 실습을 해보면 자유로운 레이아웃 구성이 가능해 진 점을 장점으로 뽑고 싶습니다. </p>
+<p>아래는 플랙스 박스에 대해서 속성값을 지정할 경우 어떤 식으로 정렬이 되는지, 그림으로 설명해 둔 것 입니다. </p>
+<h2>display : flex <span>플렉스 컨테이너를 지정하는 속성</span></h2>
+<p>속성 값 : flex(플랙스박스로 정렬), inline-flex(인라인 속성으로 정렬)</p>
+
+
+
+<!--  -->
+
+<h2>flex-direction <span>플렉스 컨테이터의 주축과 방향을 지정한다</span></h2>
+<h3>flex-direction : row</h3>
+<p>➡︎ 오른쪽에서 왼쪽으로 (박스 정렬의 방향을 이해하기 쉽게 번호로 체크해 두었음)</p>
+  <div class="container" id="opt1">
+    <div class="inbox" id="inbox1">1</div>
+    <div class="inbox" id="inbox2">2</div>
+    <div class="inbox" id="inbox3">3</div>
+  </div>
+  <h3>flex-direction : row-reverse</h3>
+<p>⬅︎ 오른쪽에서 왼쪽으로</p>
+  <div class="container" id="opt2">
+    <div class="inbox" id="inbox1">1</div>
+    <div class="inbox" id="inbox2">2</div>
+    <div class="inbox" id="inbox3">3</div>
+  </div>
+  <h3>flex-direction : column</h3>
+<p>⬇︎ 위에서 아래로</p>
+  <div class="container" id="opt3">
+    <div class="inbox" id="inbox1">1</div>
+    <div class="inbox" id="inbox2">2</div>
+    <div class="inbox" id="inbox3">3</div>
+  </div>
+  <h3>flex-direction : column-reverse</h3>
+<p>⬆︎ 아래에서 위로</p>
+  <div class="container" id="opt4">
+    <div class="inbox" id="inbox1">1</div>
+    <div class="inbox" id="inbox2">2</div>
+    <div class="inbox" id="inbox3">3</div>
+  </div>
+
+  <!-- flex-wrap test -->
+
+<h2>flex-wrap <span>줄을 바꿀지 여부를 지정한다.</span></h2>
+<h3>flex-wrap : nowrap</h3>
+<p>순서대로 쌓이지만 전체적인 줄바꿈은 없음</p>
+  <div class="container" id="flexwrap1">
+    <div class="inbox" id="inbox1">1</div>
+    <div class="inbox" id="inbox2">2</div>
+    <div class="inbox" id="inbox3">3</div>
+    <div class="inbox" id="inbox4">4</div>
+    <div class="inbox" id="inbox5">5</div>
+    <div class="inbox" id="inbox6">6</div>
+  </div>
+  <h3>flex-wrap : wrap</h3>
+  <p>순서대로 쌓이며 줄을 바꾸는 구조</p>
+  <div class="container" id="flexwrap2">
+    <div class="inbox" id="inbox1">1</div>
+    <div class="inbox" id="inbox2">2</div>
+    <div class="inbox" id="inbox3">3</div>
+    <div class="inbox" id="inbox4">4</div>
+    <div class="inbox" id="inbox5">5</div>
+    <div class="inbox" id="inbox6">6</div>
+  </div>
+  <h3>flex-wrap : wrap-reverse</h3>
+  <p>최신글이 맨 위로 올라가서 쌓으며 줄을 바꾸는 구조지만, 단점은 앞에서 뒤로 쌓인다. </p>
+  <div class="container" id="flexwrap3">
+    <div class="inbox" id="inbox1">1</div>
+    <div class="inbox" id="inbox2">2</div>
+    <div class="inbox" id="inbox3">3</div>
+    <div class="inbox" id="inbox4">4</div>
+    <div class="inbox" id="inbox5">5</div>
+    <div class="inbox" id="inbox6">6</div>
+  </div>
+  
+  <h2>flex-flow <span>flex-direction과 flex-wrap을 함께 지정하는 속성</span></h2>
+  <h3>flex-flow : row wrap </h3>
+  <p>row 순서대로 줄바꿈 있는 경우</p>
+  <div class="container" id="flexflow1">
+    <div class="inbox" id="inbox1">1</div>
+    <div class="inbox" id="inbox2">2</div>
+    <div class="inbox" id="inbox3">3</div>
+    <div class="inbox" id="inbox4">4</div>
+    <div class="inbox" id="inbox5">5</div>
+    <div class="inbox" id="inbox6">6</div>
+  </div>
+    <h3>flex-flow : row nowrap </h3>
+  <p>플렉스 컨테이너로 인해 줄이 튀어나가지 않고 인라인박스가 사이즈를 조절해서 안에서 내부 내용을 조절 (오류가 있단 소리) </p>
+  <div class="container" id="flexflow2">
+    <div class="inbox" id="inbox1">1</div>
+    <div class="inbox" id="inbox2">2</div>
+    <div class="inbox" id="inbox3">3</div>
+    <div class="inbox" id="inbox4">4</div>
+    <div class="inbox" id="inbox5">5</div>
+    <div class="inbox" id="inbox6">6</div>
+  </div>
+
+  <!-- 주축의 정렬방법. 주축은 x축 이야기하는 듯.  -->
+  <h2>justify-content <span>주축의 정렬방법</span></h2> 
+<h3>justify-contet : flex-start</h3>
+  <p>왼쪽 끝에서 시작</p>
+
+  <div class="container" id="justiflycontent1">
+    <div class="box" id="inbox1">1</div>
+    <div class="box" id="inbox2">2</div>
+    <div class="box" id="inbox3">3</div>
+    <div class="box" id="inbox4">4</div>
+  </div>
+
+  <h3>justify-contet : flex-end</h3>
+  <p>오른쪽 끝에 맞춘다음 왼쪽에서 오른쪽 순 </p>
+  <div class="container" id="justiflycontent2">
+    <div class="box" id="inbox1">1</div>
+    <div class="box" id="inbox2">2</div>
+    <div class="box" id="inbox3">3</div>
+    <div class="box" id="inbox4">4</div>
+  </div>
+
+  <h3>justify-contet : center</h3>
+  <p>가운데서 왼쪽에서 오른쪽으로 순서대로 </p>
+  <div class="container" id="justiflycontent3">
+    <div class="box" id="inbox1">1</div>
+    <div class="box" id="inbox2">2</div>
+    <div class="box" id="inbox3">3</div>
+    <div class="box" id="inbox4">4</div>
+  </div>
+
+  <h3>justify-contet : space-around</h3>
+  <p>각 항목의 여백의 절반만큼 균등하게 차지 : 각각 여백을 차지함, 겹치는 사이에 여백은 2배가 됨</p>
+  <div class="container" id="justiflycontent4">
+    <div class="box" id="inbox1">1</div>
+    <div class="box" id="inbox2">2</div>
+    <div class="box" id="inbox3">3</div>
+    <div class="box" id="inbox4">4</div>
+  </div>
+
+  <h3>justify-contet : space-between</h3>
+  <p>첫과 끝은 시작점에서 나머지는 같은 간격으로 나눠 정렬 </p>
+  <div class="container" id="justiflycontent5">
+    <div class="box" id="inbox1">1</div>
+    <div class="box" id="inbox2">2</div>
+    <div class="box" id="inbox3">3</div>
+    <div class="box" id="inbox4">4</div>
+  </div>
+
+  <h3>justify-contet : space-evenly</h3>
+  <p>각 항목별 여백을 동일하게 배분. 양쪽 끝도 동일한 여백을 차지함. 위 6개중에 가장 균등하나 모바일 창 등에서 버리는 공간이 생김</p>
+  <div class="container" id="justiflycontent6">
+    <div class="box" id="inbox1">1</div>
+    <div class="box" id="inbox2">2</div>
+    <div class="box" id="inbox3">3</div>
+    <div class="box" id="inbox4">4</div>
+  </div>
+<hr>
+<h3>justify-content : flex-end 와 maring 값을 함께 사용하기 </h3>
+<p>박스 1만 왼쪽으로 정렬하고 싶어, maring-right : auto 로 지정함 </p>
+<div class="container" id="justiflycontent2">
+  <div class="box" id="inbox-margin__right">1</div>
+  <div class="box" id="inbox2">2</div>
+  <div class="box" id="inbox3">3</div>
+  <div class="box" id="inbox4">4</div>
+</div>
+
+<p>박스 4만 오른쪽으로 정렬하고 싶어,  maring-left : auto 로 지정함 </p>
+<div class="container" id="justiflycontent2">
+  <div class="box" id="inbox1">1</div>
+  <div class="box" id="inbox2">2</div>
+  <div class="box" id="inbox3">3</div>
+  <div class="box" id="inbox-margin__left">4</div>
+</div>
+<h3>justify-content : flex-start 와 maring 값을 함께 사용하기 </h3>
+<p>박스 1만 왼쪽으로 정렬하고 싶어,  maring-right : auto 로 지정함 </p>
+<div class="container" id="justiflycontent1">
+  <div class="box" id="inbox-margin__right">1</div>
+  <div class="box" id="inbox2">2</div>
+  <div class="box" id="inbox3">3</div>
+  <div class="box" id="inbox4">4</div>
+</div>
+
+<p>박스 4만 오른쪽으로 정렬하고 싶어,  maring-left : auto 로 지정함 </p>
+<div class="container" id="justiflycontent1">
+  <div class="box" id="inbox1">1</div>
+  <div class="box" id="inbox2">2</div>
+  <div class="box" id="inbox3">3</div>
+  <div class="box" id="inbox-margin__left">4</div>
+</div>
+<p>* 주축을 column으로 지정했을 때, 세로로 배치하는 것에 대한 예제도 필요함.</p>
+<hr>
+
+  <h2>align-items <span>교차축의 정렬방법</span></h2>
+<p></p>
+
+<h3>align-items: flex-start</h3>
+<p>교차축의 시작점에 맞춰 정렬</p>
+<div class="container" id="alignitem1">
+  <div class="box2" id="inbox1">1</div>
+  <div class="box2" id="inbox2">2</div>
+  <div class="box2" id="inbox3">3</div>
+  <div class="box2" id="inbox4">4</div>
+</div>
+
+<h3>align-items: flex-end</h3>
+<p>교차축의 끝점에 맞춰 정렬</p>
+<div class="container" id="alignitem2">
+  <div class="box2" id="inbox1">1</div>
+  <div class="box2" id="inbox2">2</div>
+  <div class="box2" id="inbox3">3</div>
+  <div class="box2" id="inbox4">4</div>
+</div>
+
+<h3>align-items: center</h3>
+<p>교차축의 중앙에 정렬</p>
+<div class="container" id="alignitem3">
+  <div class="box2" id="inbox1">1</div>
+  <div class="box2" id="inbox2">2</div>
+  <div class="box2" id="inbox3">3</div>
+  <div class="box2" id="inbox4">4</div>
+</div>
+
+<h3>align-items: baseline</h3>
+<p>교차측의 문자 기준선에 맞춰</p>
+<div class="container" id="alignitem4">
+  <div class="box2" id="inbox1">1</div>
+  <div class="box2" id="inbox2">2</div>
+  <div class="box2" id="inbox3">3</div>
+  <div class="box2" id="inbox4">4</div>
+</div>
+
+<h3>align-items: stretch</h3>
+<p>플렉스 항목을 늘려 가득차게 정렬 (기본값)</p>
+<div class="container" id="alignitem5">
+  <div class="box2" id="inbox1">1</div>
+  <div class="box2" id="inbox2">2</div>
+  <div class="box2" id="inbox3">3</div>
+  <div class="box2" id="inbox4">4</div>
+</div>
+
+
+<!--  -->
+<h2>align-self <span>플렉스 항목을 각각 따로 정렬</span></h2>
+<p>높이지정을 하면 먹지 않으니, 높이지정을 빼고 & 각각 아이디로 컬러와 align-self를 주니 속성값이 제대로 표시됨</p>
+<p>속성 값은 총 9개가 있음. 각 박스안의 내용을 참고할 것. </p>
+  <div class="container" id="alignitem5">
+    <div class="box2" id="inbox01">1 auto</div>
+    <div class="box2" id="inbox02">2 normal</div>
+    <div class="box2" id="inbox03">3 flex-start</div>
+    <div class="box2" id="inbox04">4 flex-end</div>
+    <div class="box2" id="inbox05">5 self-start</div>
+    <div class="box2" id="inbox06">6 self-end</div>
+    <div class="box2" id="inbox07">7 baseline</div>
+    <div class="box2" id="inbox08">8 center</div>
+    <div class="box2" id="inbox09">9 stretch</div>
+  </div>
+
+  <!--  -->
+  <h2>aling-content <span>여러줄일때 교차측 정렬 방법을 지정하는 방법</span></h2>
+<p></p>
+
+<h3></h3>
+<p>aling-content : flex-start</p>
+  <div class="container2" id="inbox001">
+    <div class="box" id="inbox1">1</div>
+    <div class="box" id="inbox2">2</div>
+    <div class="box" id="inbox3">3</div>
+    <div class="box" id="inbox4">4</div>
+  </div>
+
+<p>aling-content : flex-end</p>
+  <div class="container2" id="inbox002">
+    <div class="box" id="inbox1">1</div>
+    <div class="box" id="inbox2">2</div>
+    <div class="box" id="inbox3">3</div>
+    <div class="box" id="inbox4">4</div>
+  </div>
+
+  <p>aling-content : center</p>
+  <div class="container2" id="inbox003">
+    <div class="box" id="inbox1">1</div>
+    <div class="box" id="inbox2">2</div>
+    <div class="box" id="inbox3">3</div>
+    <div class="box" id="inbox4">4</div>
+  </div>
+
+  <p>aling-content : space-between</p>
+  <div class="container2" id="inbox004">
+    <div class="box" id="inbox1">1</div>
+    <div class="box" id="inbox2">2</div>
+    <div class="box" id="inbox3">3</div>
+    <div class="box" id="inbox4">4</div>
+  </div>
+
+  <p>aling-content : space-around</p>
+  <div class="container2" id="inbox005">
+    <div class="box" id="inbox1">1</div>
+    <div class="box" id="inbox2">2</div>
+    <div class="box" id="inbox3">3</div>
+    <div class="box" id="inbox4">4</div>
+  </div>
+
+  <p>aling-content : stretch (얘 높이지정 없으니 안먹네? 뭐지. 여튼 높이지정 박스로 바꾸니 전체 차지함) </p>
+  <div class="container2" id="inbox006">
+    <div class="box2" id="inbox1">1</div>
+    <div class="box2" id="inbox2">2</div>
+    <div class="box2" id="inbox3">3</div>
+    <div class="box2" id="inbox4">4</div>
+  </div>
+
+  <h2>flex box를 이용해 화면의 가운데 정렬하기</h2>
+   <h3>body 안에 4개의 정렬값을 넣어주면 된다.</h3>
+  <p>display:flex;  /* 플렉스 컨테이너 지정*/ <br />
+  justify-content:center; /* 주축 정렬 중앙 */<br />
+  align-items: center; /* 교차축 정렬 중앙 */<br />
+  min-height: 100vh; /* 브라우저의 높이 100 다 사용 */</p>
+  <p>위 처럼 4개를 바디 속성에 주면, 바디 안에 정보들이 정가운데에 정렬된다.</p>
+
+  <!-- 갭. 플랙스박스들 위를 감싸는 플렉스 컨테이너에 값을 줄 것! 플랙스박스들 사이의 간격만 주는 것이므로, 플렉스 컨테이너에 대한 패딩값을 따로 지정하거나, 각각 마진값을 따로 줘서 컨테이너와의 간격을 지정해야함-->
+  <h2>gap 플랙스 항목 간에 간격을 주는 것</h2>
+  <p>플랙스박스 컨데이너 안에 플랙스 항목들의 간격을 조절할 때 사용</p>
+  <h3>gap: 15px;</h3>
+  <p>플랙스 사이에 간격을 15px로 주는 것.</p>
+  <div class="container3" id="alignitem5">
+    <div class="box2" id="inbox1">1 auto</div>
+    <div class="box2" id="inbox2">2 normal</div>
+    <div class="box2" id="inbox3">3 flex-start</div>
+    <div class="box2" id="inbox4">4 flex-end</div>
+    <div class="box2" id="inbox5">5 self-start</div>
+    <div class="box2" id="inbox6">6 self-end</div>
+  </div>
+
+  <h3>padding: 30px; gap: 15px;</h3>
+  <p>플랙스 사이에 간격을 15px로 주는 것. 플렉스 컨테이너와의 간격을 위해서 페딩값은 상하좌우 30px = 패딩값만큼 플렉스 컨테이너가 조금 더 커진다.</p>
+  <div class="container4" id="alignitem5">
+    <div class="box2" id="inbox1">1 auto</div>
+    <div class="box2" id="inbox2">2 normal</div>
+    <div class="box2" id="inbox3">3 flex-start</div>
+    <div class="box2" id="inbox4">4 flex-end</div>
+    <div class="box2" id="inbox5">5 self-start</div>
+    <div class="box2" id="inbox6">6 self-end</div>
+  </div>
+</body>
+</html>
